@@ -2,44 +2,125 @@
 <html>
 <head>
     <title>My Culminating Website</title>
+
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ff4d4d, #660000);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 40px;
+        }
+
+        .card {
+            background: rgba(0,0,0,0.4);
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 15px;
+            width: 80%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 10px;
+            background: white;
+            color: black;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: lightgray;
+        }
+
+        iframe {
+            border-radius: 10px;
+        }
+    </style>
 </head>
 
-<body style="background-color:red; color:white; text-align:center;">
+<body>
 
-<h1>Hello World</h1>
+<h1>🎢 My Culminating Website</h1>
 
-<br><br>
+<p>Interactive project with weather, maps, calendar, and roller coaster builder</p>
 
-<a class="weatherwidget-io"
-   href="https://forecast7.com/en/43d65n79d38/toronto/"
-   data-label_1="TORONTO"
-   data-label_2="WEATHER"
-   data-theme="original">
-   TORONTO WEATHER
-</a>
+<!-- WEATHER -->
+<div class="card">
+    <h2>Weather</h2>
 
-<script>
-!function(d,s,id){
-var js,fjs=d.getElementsByTagName(s)[0];
-if(!d.getElementById(id)){
-js=d.createElement(s);
-js.id=id;
-js.src='https://weatherwidget.io/js/widget.min.js';
-fjs.parentNode.insertBefore(js,fjs);
-}
-}(document,'script','weatherwidget-io-js');
-</script>
+    <a class="weatherwidget-io"
+       href="https://forecast7.com/en/43d65n79d38/toronto/"
+       data-label_1="TORONTO"
+       data-label_2="WEATHER"
+       data-theme="original">
+       TORONTO WEATHER
+    </a>
 
-<br><br><br>
+    <script>
+    !function(d,s,id){
+        var js,fjs=d.getElementsByTagName(s)[0];
+        if(!d.getElementById(id)){
+            js=d.createElement(s);
+            js.id=id;
+            js.src='https://weatherwidget.io/js/widget.min.js';
+            fjs.parentNode.insertBefore(js,fjs);
+        }
+    }(document,'script','weatherwidget-io-js');
+    </script>
+</div>
 
-<iframe
-src="https://calendar.google.com/calendar/embed?src=andrew.jimenez%40tdsb.on.ca&ctz=America%2FToronto"
-style="border:0"
-width="800"
-height="600"
-frameborder="0"
-scrolling="no">
-</iframe>
+<!-- CLOCK -->
+<div class="card">
+    <h2>Current Time</h2>
+
+    <iframe src="https://free.timeanddate.com/clock/i8l7q1z2/n250/tcfff/pcff0/tct/pct/ftb/tt0/tw0/tm1/ts1"
+    frameborder="0" width="200" height="60"></iframe>
+</div>
+
+<!-- MAP -->
+<div class="card">
+    <h2>Location Map</h2>
+
+    <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.0!2d-79.33!3d43.89"
+    width="600"
+    height="450"
+    style="border:0;"
+    loading="lazy">
+    </iframe>
+</div>
+
+<!-- COASTER -->
+<div class="card">
+    <h2>My Roller Coaster Project</h2>
+
+    <p>Click below to open my interactive roller coaster builder.</p>
+
+    <button onclick="window.open('https://imshumbleism.github.io/imshumbleism-roller-coaster-builder/')">
+        Open Coaster Builder
+    </button>
+</div>
+
+<!-- CALENDAR -->
+<div class="card">
+    <h2>Calendar</h2>
+
+    <iframe
+    src="https://calendar.google.com/calendar/embed?src=andrew.jimenez%40tdsb.on.ca&ctz=America%2FToronto"
+    width="800"
+    height="500"
+    frameborder="0"
+    scrolling="no">
+    </iframe>
+</div>
 
 </body>
 </html>
