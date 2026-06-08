@@ -18,22 +18,30 @@ h1 {
 
 p.subtitle {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
+/* ✅ FLEXBOX instead of floats */
 #container {
-    width: 100%;
-    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+    gap: 15px;
 }
 
 .box {
-    float: left;
-    width: 23%;
-    margin: 1%;
-    padding: 10px;
+    width: 300px;
     min-height: 600px;
+    padding: 15px;
     border-radius: 15px;
     box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
 #box1 { background-color: #ff9999; }
@@ -51,21 +59,26 @@ button {
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
+    background: white;
 }
 
 button:hover {
     background-color: #ddd;
 }
-</style>
 
+/* small screens fix */
+@media (max-width: 700px) {
+    .box {
+        width: 90%;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <h1>My Culminating Widget Dashboard</h1>
-<p class="subtitle">
-Widgets > Weather > calender > Tools > 
-</p>
+<p class="subtitle">Widgets • Weather • Calendar • Tools • Projects</p>
 
 <div id="container">
 
@@ -92,7 +105,6 @@ fjs.parentNode.insertBefore(js,fjs);
 }
 }(document,'script','weatherwidget-io-js');
 </script>
-
 </div>
 
 <!-- CALENDAR -->
@@ -104,7 +116,6 @@ src="https://calendar.google.com/calendar/embed?src=en.canadian%23holiday%40grou
 width="100%"
 height="500">
 </iframe>
-
 </div>
 
 <!-- TOOLS -->
@@ -124,34 +135,27 @@ src="https://www.google.com/maps?q=Toronto&output=embed"
 width="100%"
 height="250">
 </iframe>
-
 </div>
 
-<!-- ROLLER COASTER -->
+<!-- PROJECT -->
 <div class="box" id="box4">
 <h2>Roller Coaster Project</h2>
 
-<p>
-Visit my roller coaster builder project:
-</p>
+<p>Visit my roller coaster builder project:</p>
 
 <button onclick="window.open('https://imshumbleism.github.io/imshumbleism-roller-coaster-builder/')">
-Open Roller Coaster Builder
+Open Project
 </button>
 
 <br><br>
 
-<p>
- Features:
-</p>
-
+<p><b>Features:</b></p>
 <ul style="text-align:left;">
 <li>Custom coaster design</li>
 <li>Loops and hills</li>
 <li>Ride mode</li>
 <li>Day/Night mode</li>
 </ul>
-
 </div>
 
 </div>
