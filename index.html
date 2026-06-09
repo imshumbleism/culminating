@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>My Culminating Widget Dashboard</title>
+<title>My Widget Dashboard</title>
 
 <style>
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-
-    /* ❄️ winter sky background */
-    background: linear-gradient(to bottom, #0b1a3a, #1e3c72, #2a5298);
-
-    color: white;
     overflow-x: hidden;
+    color: white;
+
+    /* base winter sky */
+    background: linear-gradient(to bottom, #0b1a3a, #1e3c72, #2a5298);
 }
 
-/* ✨ soft winter glow overlay */
+/* 🌌 AURORA SKY */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        120deg,
+        rgba(0,255,200,0.15),
+        rgba(120,0,255,0.15),
+        rgba(0,120,255,0.15),
+        rgba(0,255,120,0.15)
+    );
+    animation: auroraMove 12s infinite linear;
+    filter: blur(60px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+@keyframes auroraMove {
+    0% { transform: translate(0,0) rotate(0deg); }
+    50% { transform: translate(-10%, -5%) rotate(180deg); }
+    100% { transform: translate(0,0) rotate(360deg); }
+}
+
+/* ❄️ subtle glow */
 body::before {
     content: "";
     position: fixed;
@@ -25,6 +51,12 @@ body::before {
     height: 100%;
     background: radial-gradient(circle at top, rgba(255,255,255,0.08), transparent);
     pointer-events: none;
+    z-index: 1;
+}
+
+h1, p {
+    position: relative;
+    z-index: 2;
 }
 
 h1 {
@@ -37,32 +69,38 @@ p.subtitle {
     margin-bottom: 20px;
 }
 
+/* container */
 #container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 10px;
     gap: 15px;
+    position: relative;
+    z-index: 2;
 }
 
+/* 🧊 FROST GLASS PANELS */
 .box {
     width: 300px;
     min-height: 600px;
     padding: 15px;
-    border-radius: 15px;
-    box-sizing: border-box;
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255,255,255,0.25);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
-
-#box1 { background-color: #ff9999; }
-#box2 { background-color: #99ccff; }
-#box3 { background-color: #99ff99; }
-#box4 { background-color: #ffe680; color: black; }
 
 h2 {
     text-align: center;
@@ -75,12 +113,14 @@ button {
     cursor: pointer;
     font-size: 16px;
     background: white;
+    transition: 0.2s;
 }
 
 button:hover {
     background-color: #ddd;
 }
 
+/* mobile */
 @media (max-width: 700px) {
     .box {
         width: 90%;
@@ -91,13 +131,13 @@ button:hover {
 
 <body>
 
-<h1>My Culminating Widget Dashboard</h1>
+<h1>My Widget Dashboard</h1>
 <p class="subtitle">Widgets • Weather • Calendar • Tools • Projects</p>
 
 <div id="container">
 
 <!-- WEATHER -->
-<div class="box" id="box1">
+<div class="box hover-sound">
 <h2>Weather</h2>
 
 <a class="weatherwidget-io"
@@ -123,39 +163,36 @@ fjs.parentNode.insertBefore(js,fjs);
 </div>
 
 <!-- CALENDAR -->
-<div class="box" id="box2">
+<div class="box hover-sound">
 <h2>Calendar</h2>
 
 <iframe
 src="https://calendar.google.com/calendar/embed?src=en.canadian%23holiday%40group.v.calendar.google.com&ctz=America%2FToronto"
 width="100%"
-height="500">
-</iframe>
+height="500"></iframe>
 
 </div>
 
 <!-- TOOLS -->
-<div class="box" id="box3">
+<div class="box hover-sound">
 <h2>Tools</h2>
 
 <iframe
 src="https://openspeedtest.com/Get-widget.php"
 width="100%"
-height="200">
-</iframe>
+height="200"></iframe>
 
 <br><br>
 
 <iframe
 src="https://www.google.com/maps?q=Toronto&output=embed"
 width="100%"
-height="250">
-</iframe>
+height="250"></iframe>
 
 </div>
 
 <!-- PROJECT -->
-<div class="box" id="box4">
+<div class="box hover-sound">
 <h2>Roller Coaster Project</h2>
 
 <p>Visit my roller coaster builder project:</p>
@@ -177,6 +214,29 @@ Open Project
 </div>
 
 </div>
+
+<!-- 🔊 HOVER SOUND SCRIPT -->
+<audio id="hoverSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3" preload="auto"></audio>
+
+<script>
+const sound = document.getElementById("hoverSound");
+
+// enable sound after first click (browser rule)
+document.body.addEventListener("click", () => {
+    sound.play().then(() => {
+        sound.pause();
+        sound.currentTime = 0;
+    }).catch(()=>{});
+}, { once: true });
+
+// hover effect
+document.querySelectorAll(".hover-sound").forEach(el => {
+    el.addEventListener("mouseenter", () => {
+        sound.currentTime = 0;
+        sound.play();
+    });
+});
+</script>
 
 </body>
 </html>
